@@ -3,14 +3,14 @@
 <p align="center" style="font-size: 16px"><strong>An clone version of Threads by Meta.</strong></p>
 
 <p align="center">
-  <img alt="Stars" src="https://badgen.net/github/stars/yuran1811/threads-clone">
-  <img alt="Forks" src="https://badgen.net/github/forks/yuran1811/threads-clone">
-  <img alt="Issues" src="https://badgen.net/github/issues/yuran1811/threads-clone">
-  <img alt="Commits" src="https://badgen.net/github/commits/yuran1811/threads-clone">
+  <img alt="Stars" src="https://badgen.net/github/stars/yuran1811/ythreads">
+  <img alt="Forks" src="https://badgen.net/github/forks/yuran1811/ythreads">
+  <img alt="Issues" src="https://badgen.net/github/issues/yuran1811/ythreads">
+  <img alt="Commits" src="https://badgen.net/github/commits/yuran1811/ythreads">
 </p>
 <p align="center">
   <img alt="Commitizen friendly" src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg">
-  <img alt="OSCS Status" src="https://www.oscs1024.com/platform/badge/yuran1811/threads-clone.svg?size=small">
+  <img alt="OSCS Status" src="https://www.oscs1024.com/platform/badge/yuran1811/ythreads.svg?size=small">
 </p>
 
 ## Live Demo
