@@ -35,7 +35,7 @@ async function Page() {
 
                     <p className='body-text text-light-1 '>
                       <span className='mr-1 text-primary-500'>{_.author.name}</span>
-                      reply to your thread {/* _.text */}
+                      reply to your thread <span className='line-clamp-1 max-w-xs'>({_.text})</span>
                     </p>
                   </article>
                 </Link>

@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server';
-import { getRandomQuote } from './core';
+import { QuoteType, getRandomQuote } from './core';
 
 export const GET = async () => {
   try {
     const randomQuote = await getRandomQuote();
-    const {} = randomQuote;
+    const { author, content } = randomQuote as QuoteType;
 
-    return NextResponse.json(randomQuote);
+    return NextResponse.json({ author, content });
   } catch (error) {
     return NextResponse.json({ error });
   }

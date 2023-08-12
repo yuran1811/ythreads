@@ -38,7 +38,7 @@ interface Props {
   accountType: 'User' | 'Community';
 }
 
-async function ThreadsTab({ currentUserId, accountId, accountType }: Props) {
+export async function ThreadsTab({ currentUserId, accountId, accountType }: Props) {
   let result: Result;
 
   if (accountType === 'Community') {
@@ -79,7 +79,7 @@ async function ThreadsTab({ currentUserId, accountId, accountType }: Props) {
         />
       ))}
 
-      {result.threads.length === 0 && <p className='no-result'>This organization has no threads yet</p>}
+      {result.threads.length === 0 && <p className='no-result'>No threads found</p>}
     </section>
   );
 }

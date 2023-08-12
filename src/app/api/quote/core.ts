@@ -38,7 +38,7 @@ export const getRandomQuote = async (params?: QuoteApiParam) => {
     const res = await fetch('https://api.quotable.io/random');
     const data = await res.json();
 
-    return data as QuoteType;
+    return data;
   } catch (err) {
     return { error: err };
   }

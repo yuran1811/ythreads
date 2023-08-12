@@ -1,20 +1,27 @@
-import ThreadCard from '@/components/cards/ThreadCard';
-import { fetchPosts } from '@/lib/actions/thread.actions';
-import { fetchUser } from '@/lib/actions/user.actions';
 import { currentUser } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 
-export default async function Home() {
+import { fetchPosts } from '@/lib/actions/thread.actions';
+import { fetchUser } from '@/lib/actions/user.actions';
+
+import ThreadCard from '@/components/cards/ThreadCard';
+import Pagination from '@/components/shared/Pagination';
+
+interface HomeProps {
+  searchParams: Record<string, string | undefined>;
+}
+
+export default async function Home({ searchParams }: HomeProps) {
   const user = await currentUser();
   if (!user) return <div>Not logged in</div>;
 
   const userInfo = await fetchUser(user.id);
   if (!userInfo?.onboarded) redirect('/onboarding');
 
-  const { posts, isNext } = await fetchPosts();
+  const { posts, isNext } = await fetchPosts(searchParams.page ? +searchParams.page : 1, 25);
 
   return (
-    <section className=''>
+    <section>
       <h1 className='head-text mb-10'>Hi, {user?.username}</h1>
 
       <section className='mt-10 flex flex-col gap-10'>
@@ -34,6 +41,8 @@ export default async function Home() {
           />
         ))}
       </section>
+
+      <Pagination path='/' pageNumber={searchParams?.page ? +searchParams.page : 1} isNext={isNext} />
     </section>
   );
 }

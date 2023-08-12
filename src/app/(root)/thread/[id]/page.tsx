@@ -24,8 +24,6 @@ export default async function Page({ params: { id } }: Params) {
 
   return (
     <section className='relative'>
-      <div>Hello thread {id}</div>
-
       <div>
         <ThreadCard
           key={thread._id}
@@ -42,7 +40,6 @@ export default async function Page({ params: { id } }: Params) {
 
       <div className='mt-7'>
         <Comment threadId={id} currentUserId={userInfo?._id} currentUserImg={userInfo?.image} />
-        <div className='text-heading2-bold'>H2 bold</div>
       </div>
 
       <div className='mt-8'>
