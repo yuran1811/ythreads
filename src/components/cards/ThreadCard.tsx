@@ -127,7 +127,7 @@ function ThreadCard({
               alt={`user_${index}`}
               width={24}
               height={24}
-              className={`${index !== 0 && '-ml-5'} rounded-full object-cover`}
+              className={cn(index !== 0 && '-ml-5', 'rounded-full object-cover')}
             />
           ))}
 

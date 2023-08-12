@@ -1,25 +1,23 @@
 import mongoose from 'mongoose';
 
+import { ThreadInfoProps } from '@/shared/types';
+
 const threadSchema = new mongoose.Schema({
-  text: {
+  parentId: {
     type: String,
-    required: true,
   },
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true,
   },
+  text: {
+    type: String,
+    required: true,
+  },
   community: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Community',
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  parentId: {
-    type: String,
   },
   children: [
     {
@@ -27,8 +25,12 @@ const threadSchema = new mongoose.Schema({
       ref: 'Thread',
     },
   ],
-});
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+} as Record<keyof ThreadInfoProps, any>);
 
-const Thread = mongoose.models.Thread || mongoose.model('Thread', threadSchema);
+export const Thread = mongoose.models.Thread || mongoose.model('Thread', threadSchema);
 
 export default Thread;

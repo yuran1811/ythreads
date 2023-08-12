@@ -1,7 +1,13 @@
 import mongoose from 'mongoose';
 
+import { UserInfoProps } from '@/shared/types';
+
 const userSchema = new mongoose.Schema({
   id: {
+    type: String,
+    required: true,
+  },
+  name: {
     type: String,
     required: true,
   },
@@ -10,30 +16,30 @@ const userSchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
-  name: {
+  bio: {
     type: String,
-    required: true,
   },
-  image: String,
-  bio: String,
+  image: {
+    type: String,
+  },
+  onboarded: {
+    type: Boolean,
+    default: false,
+  },
   threads: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Thread',
     },
   ],
-  onboarded: {
-    type: Boolean,
-    default: false,
-  },
   communities: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Community',
     },
   ],
-});
+} as Record<keyof UserInfoProps, any>);
 
-const User = mongoose.models.User || mongoose.model('User', userSchema);
+export const User = mongoose.models.User || mongoose.model('User', userSchema);
 
 export default User;

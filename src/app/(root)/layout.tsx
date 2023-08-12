@@ -1,10 +1,13 @@
 import '@/app/globals.css';
+
 import { ClerkProvider } from '@clerk/nextjs';
 import { dark } from '@clerk/themes';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { Suspense } from 'react';
 
 import { BottomBar, LeftSideBar, RightSideBar, TopBar } from '@/components/shared';
+import Loading from './loading';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,7 +27,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <LeftSideBar />
 
             <section className='main-container'>
-              <div className='w-full max-w-4xl'>{children}</div>
+              <div className='w-full max-w-4xl'>
+                <Suspense fallback={<Loading />}>{children}</Suspense>
+              </div>
             </section>
 
             <RightSideBar />

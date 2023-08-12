@@ -1,9 +1,10 @@
 'use client';
 
-import { sidebarLinks } from '@/shared/constants';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+
+import { sidebarLinks } from '@/shared/constants';
 
 export function BottomBar() {
   const pathname = usePathname();
@@ -19,7 +20,7 @@ export function BottomBar() {
             <Link
               href={link.route}
               key={link.label}
-              className={`bottombar_link ${isActive && 'bg-primary-500'}`}
+              className={`bottombar_link ${isActive && 'bg-primary-700'}`}
             >
               <Image src={link.imgURL} alt={link.label} width={16} height={16} className='object-contain' />
 

@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+import { CommunityInfoProps } from '@/shared/types';
+
 const communitySchema = new mongoose.Schema({
   id: {
     type: String,
@@ -14,8 +16,12 @@ const communitySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  image: String,
-  bio: String,
+  image: {
+    type: String,
+  },
+  bio: {
+    type: String,
+  },
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -32,9 +38,8 @@ const communitySchema = new mongoose.Schema({
       ref: 'User',
     },
   ],
-});
+} as Record<keyof CommunityInfoProps, any>);
 
-const Community =
-  mongoose.models.Community || mongoose.model('Community', communitySchema);
+export const Community = mongoose.models.Community || mongoose.model('Community', communitySchema);
 
 export default Community;

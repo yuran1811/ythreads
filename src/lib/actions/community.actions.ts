@@ -2,9 +2,7 @@
 
 import { FilterQuery, SortOrder } from 'mongoose';
 
-import Community from '@/lib/models/community.model';
-import Thread from '@/lib/models/thread.model';
-import User from '@/lib/models/user.model';
+import { Community, Thread, User } from '@/lib/models';
 import { connectToDB } from '@/lib/mongoose';
 
 export async function createCommunity(
@@ -42,7 +40,6 @@ export async function createCommunity(
 
     return createdCommunity;
   } catch (error) {
-    // Handle any errors
     console.error('Error creating community:', error);
     throw error;
   }
@@ -63,7 +60,6 @@ export async function fetchCommunityDetails(id: string) {
 
     return communityDetails;
   } catch (error) {
-    // Handle any errors
     console.error('Error fetching community details:', error);
     throw error;
   }
@@ -96,7 +92,6 @@ export async function fetchCommunityPosts(id: string) {
 
     return communityPosts;
   } catch (error) {
-    // Handle any errors
     console.error('Error fetching community posts:', error);
     throw error;
   }
@@ -188,7 +183,6 @@ export async function addMemberToCommunity(communityId: string, memberId: string
 
     return community;
   } catch (error) {
-    // Handle any errors
     console.error('Error adding member to community:', error);
     throw error;
   }
@@ -217,7 +211,6 @@ export async function removeUserFromCommunity(userId: string, communityId: strin
 
     return { success: true };
   } catch (error) {
-    // Handle any errors
     console.error('Error removing user from community:', error);
     throw error;
   }
@@ -241,7 +234,6 @@ export async function updateCommunityInfo(
 
     return updatedCommunity;
   } catch (error) {
-    // Handle any errors
     console.error('Error updating community information:', error);
     throw error;
   }

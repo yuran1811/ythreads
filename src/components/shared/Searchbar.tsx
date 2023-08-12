@@ -12,6 +12,7 @@ interface Props {
 
 export function Searchbar({ routeType }: Props) {
   const router = useRouter();
+  
   const [search, setSearch] = useState('');
 
   useEffect(() => {

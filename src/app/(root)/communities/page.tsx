@@ -1,12 +1,12 @@
 import { currentUser } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 
-import { fetchCommunities } from '@/lib/actions/community.actions';
-import { fetchUser } from '@/lib/actions/user.actions';
-
 import CommunityCard from '@/components/cards/CommunityCard';
 import Pagination from '@/components/shared/Pagination';
 import Searchbar from '@/components/shared/Searchbar';
+
+import { fetchCommunities } from '@/lib/actions/community.actions';
+import { fetchUser } from '@/lib/actions/user.actions';
 
 interface Props {
   searchParams: Record<string, string | undefined>;

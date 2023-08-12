@@ -3,12 +3,12 @@ import Image from 'next/image';
 
 import { communityTabs } from '@/shared/constants';
 
+import UserCard from '@/components/cards/UserCard';
 import ProfileHeader from '@/components/shared/ProfileHeader';
 import ThreadsTab from '@/components/shared/ThreadsTab';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 import { fetchCommunityDetails } from '@/lib/actions/community.actions';
-import UserCard from '@/components/cards/UserCard';
 
 async function Page({ params }: { params: { id: string } }) {
   const user = await currentUser();

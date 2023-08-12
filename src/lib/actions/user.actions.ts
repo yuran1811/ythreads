@@ -3,16 +3,13 @@
 import { FilterQuery, SortOrder } from 'mongoose';
 import { revalidatePath } from 'next/cache';
 
-import Community from '../models/community.model';
-import Thread from '../models/thread.model';
-import User from '../models/user.model';
-
-import { connectToDB } from '../mongoose';
+import { Community, Thread, User } from '@/lib/models';
+import { connectToDB } from '@/lib/mongoose';
 
 interface Params {
   userId: string;
-  username: string;
   name: string;
+  username: string;
   bio: string;
   image: string;
   path: string;
@@ -38,8 +35,8 @@ export async function updateUser({ userId, bio, name, path, username, image }: P
     await User.findOneAndUpdate(
       { id: userId },
       {
-        username: username.toLowerCase(),
         name,
+        username: username.toLowerCase(),
         bio,
         image,
         onboarded: true,
@@ -47,9 +44,7 @@ export async function updateUser({ userId, bio, name, path, username, image }: P
       { upsert: true },
     );
 
-    if (path === '/profile/edit') {
-      revalidatePath(path);
-    }
+    if (path === '/profile/edit') revalidatePath(path);
   } catch (error: any) {
     throw new Error(`Failed to create/update user: ${error.message}`);
   }
@@ -67,7 +62,7 @@ export async function fetchUserPosts(userId: string) {
         {
           path: 'community',
           model: Community,
-          select: 'name id image _id', // Select the "name" and "_id" fields from the "Community" model
+          select: '_id id name image', // Select the "name" and "_id" fields from the "Community" model
         },
         {
           path: 'children',
@@ -75,7 +70,7 @@ export async function fetchUserPosts(userId: string) {
           populate: {
             path: 'author',
             model: User,
-            select: 'name image id', // Select the "name" and "_id" fields from the "User" model
+            select: 'id name image', // Select the "name" and "_id" fields from the "User" model
           },
         },
       ],
@@ -159,7 +154,7 @@ export async function getActivity(userId: string) {
     }).populate({
       path: 'author',
       model: User,
-      select: 'name image _id',
+      select: '_id name image',
     });
 
     return replies;

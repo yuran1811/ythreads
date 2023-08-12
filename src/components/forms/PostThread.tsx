@@ -1,15 +1,17 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Textarea } from '@/components/ui/textarea';
-import { createThread } from '@/lib/actions/thread.actions';
-import { ThreadValidation } from '@/lib/validations/thread';
 import { useOrganization } from '@clerk/nextjs';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { usePathname, useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
+
+import { Button } from '@/components/ui/button';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Textarea } from '@/components/ui/textarea';
+
+import { createThread } from '@/lib/actions/thread.actions';
+import { ThreadValidation } from '@/lib/validations/thread';
 
 interface Props {
   userId: string;
@@ -61,7 +63,7 @@ function PostThread({ userId }: Props) {
           )}
         />
 
-        <Button type='submit' className='bg-primary-500'>
+        <Button type='submit' className='mx-auto w-max bg-primary-700'>
           Post Thread
         </Button>
       </form>

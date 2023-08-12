@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+
 import { Button } from '../ui/button';
 
 interface Props {
@@ -21,12 +22,7 @@ function UserCard({ id, name, username, imgUrl, personType }: Props) {
     <article className='user-card'>
       <div className='user-card_avatar'>
         <div className='relative h-12 w-12'>
-          <Image
-            src={imgUrl}
-            alt='user_logo'
-            fill
-            className='rounded-full object-cover'
-          />
+          <Image src={imgUrl} alt='user_logo' fill className='rounded-full object-cover' />
         </div>
 
         <div className='flex-1 text-ellipsis'>

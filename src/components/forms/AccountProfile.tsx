@@ -7,20 +7,15 @@ import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
 import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+
 import { updateUser } from '@/lib/actions/user.actions';
 import { useUploadThing } from '@/lib/uploadthing';
 import { isBase64Image } from '@/lib/utils';
 import { UserValidation } from '@/lib/validations/user';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 
 interface Props {
@@ -38,6 +33,7 @@ interface Props {
 const AccountProfile = ({ user, btnTitle }: Props) => {
   const router = useRouter();
   const pathname = usePathname();
+
   const { startUpload, isUploading } = useUploadThing('media');
 
   const [files, setFiles] = useState<File[]>([]);
@@ -59,8 +55,8 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
     if (hasImageChanged) {
       const imgRes = await startUpload(files);
 
-      if (imgRes && imgRes[0].fileUrl) {
-        values.profile_photo = imgRes[0].fileUrl;
+      if (imgRes && imgRes[0].url) {
+        values.profile_photo = imgRes[0].url;
       }
     }
 
@@ -80,10 +76,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
     }
   };
 
-  const handleImage = (
-    e: ChangeEvent<HTMLInputElement>,
-    fieldChange: (value: string) => void,
-  ) => {
+  const handleImage = (e: ChangeEvent<HTMLInputElement>, fieldChange: (value: string) => void) => {
     e.preventDefault();
 
     const fileReader = new FileReader();
@@ -105,10 +98,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
 
   return (
     <Form {...form}>
-      <form
-        className='flex flex-col justify-start gap-10'
-        onSubmit={form.handleSubmit(onSubmit)}
-      >
+      <form className='flex flex-col justify-start gap-10' onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
           name='profile_photo'
@@ -152,15 +142,9 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
           name='name'
           render={({ field }) => (
             <FormItem className='flex w-full flex-col gap-3'>
-              <FormLabel className='text-base-semibold text-light-2'>
-                Name
-              </FormLabel>
+              <FormLabel className='text-base-semibold text-light-2'>Name</FormLabel>
               <FormControl>
-                <Input
-                  type='text'
-                  className='account-form_input no-focus'
-                  {...field}
-                />
+                <Input type='text' className='account-form_input no-focus' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -172,15 +156,9 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
           name='username'
           render={({ field }) => (
             <FormItem className='flex w-full flex-col gap-3'>
-              <FormLabel className='text-base-semibold text-light-2'>
-                Username
-              </FormLabel>
+              <FormLabel className='text-base-semibold text-light-2'>Username</FormLabel>
               <FormControl>
-                <Input
-                  type='text'
-                  className='account-form_input no-focus'
-                  {...field}
-                />
+                <Input type='text' className='account-form_input no-focus' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -192,22 +170,16 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
           name='bio'
           render={({ field }) => (
             <FormItem className='flex w-full flex-col gap-3'>
-              <FormLabel className='text-base-semibold text-light-2'>
-                Bio
-              </FormLabel>
+              <FormLabel className='text-base-semibold text-light-2'>Bio</FormLabel>
               <FormControl>
-                <Textarea
-                  rows={10}
-                  className='account-form_input no-focus'
-                  {...field}
-                />
+                <Textarea rows={10} className='account-form_input no-focus' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <Button type='submit' className='bg-primary-500'>
+        <Button type='submit' className='mx-auto w-max bg-primary-700'>
           {btnTitle}
         </Button>
       </form>
