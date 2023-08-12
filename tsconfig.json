@@ -16,6 +16,10 @@
     "incremental": true,
     "plugins": [{ "name": "next" }],
     "paths": {
+      "@/components/*": ["./src/components/*"],
+      "@/lib/*": ["./src/lib/*"],
+      "@/utils/*": ["./src/utils/*"],
+      "@/shared/*": ["./src/shared/*"],
       "@/*": ["./src/*"]
     }
   },
