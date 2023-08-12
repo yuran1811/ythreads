@@ -35,7 +35,7 @@ interface Result {
 interface Props {
   currentUserId: string;
   accountId: string;
-  accountType: string;
+  accountType: 'User' | 'Community';
 }
 
 async function ThreadsTab({ currentUserId, accountId, accountType }: Props) {
@@ -78,6 +78,8 @@ async function ThreadsTab({ currentUserId, accountId, accountType }: Props) {
           comments={thread.children}
         />
       ))}
+
+      {result.threads.length === 0 && <p className='no-result'>This organization has no threads yet</p>}
     </section>
   );
 }

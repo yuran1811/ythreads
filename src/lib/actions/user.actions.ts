@@ -22,11 +22,10 @@ export async function fetchUser(userId: string) {
   try {
     connectToDB();
 
-    return await User.findOne({ id: userId });
-    // .populate({
-    //   path: 'communities',
-    //   model: Community,
-    // });
+    return await User.findOne({ id: userId }).populate({
+      path: 'communities',
+      model: Community,
+    });
   } catch (error: any) {
     throw new Error(`Failed to fetch user: ${error.message}`);
   }
@@ -105,10 +104,13 @@ export async function fetchUsers({
   try {
     connectToDB();
 
+    // Calculate the number of users to skip based on the page number and page size.
     const skipAmount = (pageNumber - 1) * pageSize;
 
+    // Create a case-insensitive regular expression for the provided search string.
     const regex = new RegExp(searchString, 'i');
 
+    // Create an initial query object to filter users.
     const query: FilterQuery<typeof User> = {
       id: { $ne: userId }, // Exclude the current user from the results.
     };

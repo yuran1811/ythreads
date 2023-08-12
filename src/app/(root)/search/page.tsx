@@ -22,7 +22,7 @@ async function Page() {
     <section className=''>
       <h1 className='head-text mb-10'>Search</h1>
 
-      <div className='mt-14 flex flex-col gap-9'>
+      <div className='mt-10 flex flex-col gap-8'>
         {users.length > 0 ? (
           users.map((user) => (
             <UserCard

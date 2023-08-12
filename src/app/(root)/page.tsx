@@ -14,11 +14,11 @@ export default async function Home() {
   const { posts, isNext } = await fetchPosts();
 
   return (
-    <main className=''>
-      <p className='head-text'>Hi, {user?.username}</p>
+    <section className=''>
+      <h1 className='head-text mb-10'>Hi, {user?.username}</h1>
 
-      <section className='mt-9 flex flex-col gap-10'>
-        {!posts.length && <p className='no-result'>No threads found!</p>}
+      <section className='mt-10 flex flex-col gap-10'>
+        {!posts.length && <p className='no-result'>No threads found</p>}
 
         {posts.map(({ _id, id, text, author, parentId, community, createdAt, children }) => (
           <ThreadCard
@@ -34,6 +34,6 @@ export default async function Home() {
           />
         ))}
       </section>
-    </main>
+    </section>
   );
 }
