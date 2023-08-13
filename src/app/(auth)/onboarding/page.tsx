@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 
 import AccountProfile from '@/components/forms/AccountProfile';
 
-import { fetchUser } from '@/lib/actions/user.actions';
+import { fetchUser } from '@/lib/actions';
 
 async function Page() {
   const user = await currentUser();

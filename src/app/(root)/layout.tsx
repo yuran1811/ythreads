@@ -4,9 +4,16 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { dark } from '@clerk/themes';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { Suspense } from 'react';
+import { PropsWithChildren, Suspense } from 'react';
 
-import { BottomBar, LeftSideBar, RightSideBar, TopBar } from '@/components/shared';
+import {
+  BodyContextMenu,
+  BottomBar,
+  LeftSideBar,
+  RightSideBar,
+  ThemeProvider,
+  TopBar,
+} from '@/components/shared';
 import Loading from './loading';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -16,26 +23,30 @@ export const metadata: Metadata = {
   description: 'A Next.js 13 Meta Threads application',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <ClerkProvider appearance={{ baseTheme: dark }}>
-      <html lang='en'>
+      <html lang='en' className='dark' style={{ colorScheme: 'dark' }}>
         <body className={inter.className}>
-          <TopBar />
+          <BodyContextMenu>
+            <ThemeProvider attribute='class' defaultTheme='dark' enableSystem>
+              <TopBar />
 
-          <main className='flex flex-row'>
-            <LeftSideBar />
+              <main className='flex flex-row'>
+                <LeftSideBar />
 
-            <section className='main-container'>
-              <div className='w-full max-w-4xl'>
-                <Suspense fallback={<Loading />}>{children}</Suspense>
-              </div>
-            </section>
+                <section className='main-container'>
+                  <div className='w-full max-w-4xl'>
+                    <Suspense fallback={<Loading />}>{children}</Suspense>
+                  </div>
+                </section>
 
-            <RightSideBar />
-          </main>
+                <RightSideBar />
+              </main>
 
-          <BottomBar />
+              <BottomBar />
+            </ThemeProvider>
+          </BodyContextMenu>
         </body>
       </html>
     </ClerkProvider>

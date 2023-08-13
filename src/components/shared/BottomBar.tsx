@@ -32,5 +32,3 @@ export function BottomBar() {
     </section>
   );
 }
-
-export default BottomBar;

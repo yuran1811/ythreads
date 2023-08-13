@@ -42,5 +42,3 @@ export function ProfileHeader({ accountId, authUserId, name, username, imgUrl, b
     </div>
   );
 }
-
-export default ProfileHeader;

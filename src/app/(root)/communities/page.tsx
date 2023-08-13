@@ -1,18 +1,14 @@
 import { currentUser } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 
+import { SearchParamsProps } from '@/shared/types';
+
 import CommunityCard from '@/components/cards/CommunityCard';
-import Pagination from '@/components/shared/Pagination';
-import Searchbar from '@/components/shared/Searchbar';
+import { Pagination, Searchbar } from '@/components/shared';
 
-import { fetchCommunities } from '@/lib/actions/community.actions';
-import { fetchUser } from '@/lib/actions/user.actions';
+import { fetchCommunities, fetchUser } from '@/lib/actions';
 
-interface Props {
-  searchParams: Record<string, string | undefined>;
-}
-
-export default async function Page({ searchParams }: Props) {
+export default async function Page({ searchParams }: SearchParamsProps<{ page: string; q: string }>) {
   const user = await currentUser();
   if (!user) return null;
 
@@ -29,9 +25,11 @@ export default async function Page({ searchParams }: Props) {
     <section className=''>
       <h1 className='head-text mb-10'>Communities</h1>
 
-      <div className='mt-5'>
-        <Searchbar routeType='communities' />
-      </div>
+      {communities.length > 0 && (
+        <div className='mt-5'>
+          <Searchbar routeType='communities' />
+        </div>
+      )}
 
       <div className='mt-10 flex flex-col gap-8'>
         {communities.length > 0 ? (

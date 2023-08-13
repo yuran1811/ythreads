@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 
-import { deleteThread } from '@/lib/actions/thread.actions';
+import { deleteThread } from '@/lib/actions';
 
 interface Props {
   threadId: string;
@@ -14,8 +14,8 @@ interface Props {
 }
 
 function DeleteThread({ threadId, currentUserId, authorId, parentId, isComment }: Props) {
-  const pathname = usePathname();
   const router = useRouter();
+  const pathname = usePathname();
 
   if (currentUserId !== authorId || pathname === '/') return null;
 
@@ -27,7 +27,8 @@ function DeleteThread({ threadId, currentUserId, authorId, parentId, isComment }
       height={18}
       className='cursor-pointer object-contain'
       onClick={async () => {
-        await deleteThread(JSON.parse(threadId), pathname);
+        await deleteThread(threadId, pathname);
+
         if (!parentId || !isComment) {
           router.push('/');
         }

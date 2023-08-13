@@ -3,7 +3,9 @@ import { redirect } from 'next/navigation';
 
 import AccountProfile from '@/components/forms/AccountProfile';
 
-import { fetchUser } from '@/lib/actions/user.actions';
+import { fetchUser } from '@/lib/actions';
+
+import { converObjectIdToString } from '@/utils/base';
 
 async function Page() {
   const user = await currentUser();
@@ -14,7 +16,7 @@ async function Page() {
 
   const userData = {
     id: user.id,
-    objectId: userInfo && userInfo?._id ? userInfo?._id : user.id,
+    objectId: converObjectIdToString(userInfo?._id),
     username: userInfo ? userInfo?.username : user.username,
     name: userInfo ? userInfo?.name : user.firstName ?? '',
     bio: userInfo ? userInfo?.bio : '',

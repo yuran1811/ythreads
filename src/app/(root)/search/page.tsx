@@ -1,17 +1,14 @@
 import { currentUser } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 
+import { SearchParamsProps } from '@/shared/types';
+
 import UserCard from '@/components/cards/UserCard';
-import Pagination from '@/components/shared/Pagination';
-import Searchbar from '@/components/shared/Searchbar';
+import { Pagination, Searchbar } from '@/components/shared';
 
-import { fetchUser, fetchUsers } from '@/lib/actions/user.actions';
+import { fetchUser, fetchUsers } from '@/lib/actions';
 
-interface Props {
-  searchParams: Record<string, string | undefined>;
-}
-
-async function Page({ searchParams }: Props) {
+async function Page({ searchParams }: SearchParamsProps<{ page: string; q: string }>) {
   const user = await currentUser();
   if (!user) return null;
 
@@ -29,7 +26,7 @@ async function Page({ searchParams }: Props) {
     <section>
       <h1 className='head-text mb-10'>Search</h1>
 
-      <Searchbar routeType='search' />
+      {users.length > 0 && <Searchbar routeType='search' />}
 
       <div className='mt-10 flex flex-col gap-8'>
         {users.length > 0 ? (

@@ -64,5 +64,3 @@ export async function RightSideBar() {
     </section>
   );
 }
-
-export default RightSideBar;

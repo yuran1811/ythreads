@@ -57,5 +57,3 @@ export const LeftSideBar = () => {
     </section>
   );
 };
-
-export default LeftSideBar;

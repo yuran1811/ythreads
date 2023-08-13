@@ -10,7 +10,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 
-import { addCommentToThread } from '@/lib/actions/thread.actions';
+import { addCommentToThread } from '@/lib/actions';
 import { CommentValidation } from '@/lib/validations/thread';
 
 interface Props {
@@ -56,7 +56,7 @@ function Comment({ threadId, currentUserImg, currentUserId }: Props) {
                 <Input
                   type='text'
                   {...field}
-                  placeholder='Comment...'
+                  placeholder='Type to comment...'
                   className='no-focus text-light-1 outline-none'
                 />
               </FormControl>

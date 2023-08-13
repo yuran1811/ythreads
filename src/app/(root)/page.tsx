@@ -1,24 +1,21 @@
 import { currentUser } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 
+import { SearchParamsProps } from '@/shared/types';
+
 import ThreadCard from '@/components/cards/ThreadCard';
-import Pagination from '@/components/shared/Pagination';
+import { Pagination } from '@/components/shared/';
 
-import { fetchPosts } from '@/lib/actions/thread.actions';
-import { fetchUser } from '@/lib/actions/user.actions';
+import { fetchPosts, fetchUser } from '@/lib/actions';
 
-interface HomeProps {
-  searchParams: Record<string, string | undefined>;
-}
-
-export default async function Home({ searchParams }: HomeProps) {
+export default async function Home({ searchParams }: SearchParamsProps<{ page: string }>) {
   const user = await currentUser();
   if (!user) return <div>Not logged in</div>;
 
   const userInfo = await fetchUser(user.id);
   if (!userInfo?.onboarded) redirect('/onboarding');
 
-  const { posts, isNext } = await fetchPosts(searchParams.page ? +searchParams.page : 1, 25);
+  const { posts, isNext } = await fetchPosts(searchParams?.page ? +searchParams.page : 1, 20);
 
   return (
     <section>

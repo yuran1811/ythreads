@@ -1,19 +1,16 @@
-'use server';
-
 import { currentUser } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
+
+import { ParamsProps } from '@/shared/types';
 
 import ThreadCard from '@/components/cards/ThreadCard';
 import Comment from '@/components/forms/Comment';
 
-import { fetchThreadById } from '@/lib/actions/thread.actions';
-import { fetchUser } from '@/lib/actions/user.actions';
+import { fetchThreadById, fetchUser } from '@/lib/actions';
 
-interface Params {
-  params: { id: string };
-}
+import { converObjectIdToString } from '@/utils/base';
 
-export default async function Page({ params: { id } }: Params) {
+export default async function Page({ params: { id } }: ParamsProps<{ id: string }>) {
   if (!id) return null;
 
   const user = await currentUser();
@@ -31,7 +28,7 @@ export default async function Page({ params: { id } }: Params) {
           key={thread._id}
           id={thread.id}
           parentId={thread.parentId}
-          currentUserId={user?.id}
+          currentUserId={user.id}
           author={thread.author}
           community={thread.community}
           content={thread.text}
@@ -41,7 +38,11 @@ export default async function Page({ params: { id } }: Params) {
       </div>
 
       <div className='mt-7'>
-        <Comment threadId={id} currentUserId={userInfo?._id} currentUserImg={userInfo?.image} />
+        <Comment
+          threadId={id}
+          currentUserId={converObjectIdToString(userInfo?._id)}
+          currentUserImg={userInfo?.image}
+        />
       </div>
 
       <div className='mt-8'>
@@ -50,7 +51,7 @@ export default async function Page({ params: { id } }: Params) {
             key={child._id}
             id={child.id}
             parentId={child.parentId}
-            currentUserId={user?.id}
+            currentUserId={user.id}
             author={child.author}
             community={child.community}
             content={child.text}

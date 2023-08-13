@@ -1,5 +1,6 @@
 'use client';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { ChangeEvent, useState } from 'react';
@@ -11,12 +12,10 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 
-import { updateUser } from '@/lib/actions/user.actions';
+import { updateUser } from '@/lib/actions';
 import { useUploadThing } from '@/lib/uploadthing';
 import { isBase64Image } from '@/lib/utils';
 import { UserValidation } from '@/lib/validations/user';
-
-import { zodResolver } from '@hookform/resolvers/zod';
 
 interface Props {
   user: {

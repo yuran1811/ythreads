@@ -32,5 +32,3 @@ export const TopBar = () => (
     </div>
   </nav>
 );
-
-export default TopBar;

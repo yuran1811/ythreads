@@ -4,8 +4,9 @@ import Link from 'next/link';
 import DeleteThread from '../forms/DeleteThread';
 
 import { cn, formatDateString } from '@/lib/utils';
+import { converObjectIdToString } from '@/utils/base';
 
-interface Props {
+export interface ThreadCardProps {
   id: string;
   currentUserId: string;
   parentId: string | null;
@@ -39,7 +40,7 @@ function ThreadCard({
   createdAt,
   comments,
   isComment,
-}: Props) {
+}: ThreadCardProps) {
   return (
     <article className={cn('flex w-full flex-col rounded-xl', isComment ? 'px-0 xs:px-7' : 'bg-dark-2 p-7')}>
       <div className='flex items-start justify-between'>
@@ -110,7 +111,7 @@ function ThreadCard({
         </div>
 
         <DeleteThread
-          threadId={JSON.stringify(id)}
+          threadId={converObjectIdToString(id)}
           currentUserId={currentUserId}
           authorId={author.id}
           parentId={parentId}

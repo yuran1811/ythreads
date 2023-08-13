@@ -2,15 +2,15 @@ import { currentUser } from '@clerk/nextjs';
 import Image from 'next/image';
 
 import { communityTabs } from '@/shared/constants';
+import { ParamsProps } from '@/shared/types';
 
 import UserCard from '@/components/cards/UserCard';
-import ProfileHeader from '@/components/shared/ProfileHeader';
-import ThreadsTab from '@/components/shared/ThreadsTab';
+import { ProfileHeader, ThreadsTab } from '@/components/shared';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-import { fetchCommunityDetails } from '@/lib/actions/community.actions';
+import { fetchCommunityDetails } from '@/lib/actions';
 
-async function Page({ params }: { params: { id: string } }) {
+async function Page({ params }: ParamsProps<{ id: string }>) {
   const user = await currentUser();
   if (!user) return null;
 

@@ -3,14 +3,14 @@ import Image from 'next/image';
 import { redirect } from 'next/navigation';
 
 import { profileTabs } from '@/shared/constants';
+import { ParamsProps } from '@/shared/types';
 
-import ProfileHeader from '@/components/shared/ProfileHeader';
-import ThreadsTab from '@/components/shared/ThreadsTab';
+import { ProfileHeader, ThreadsTab } from '@/components/shared';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-import { fetchUser } from '@/lib/actions/user.actions';
+import { fetchUser } from '@/lib/actions';
 
-async function Page({ params }: { params: { id: string } }) {
+async function Page({ params }: ParamsProps<{ id: string }>) {
   const user = await currentUser();
   if (!user) return null;
 

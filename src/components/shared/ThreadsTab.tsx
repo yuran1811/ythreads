@@ -80,5 +80,3 @@ export async function ThreadsTab({ currentUserId, accountId, accountType }: Prop
     </section>
   );
 }
-
-export default ThreadsTab;

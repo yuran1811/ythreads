@@ -3,7 +3,9 @@ import { redirect } from 'next/navigation';
 
 import PostThread from '@/components/forms/PostThread';
 
-import { fetchUser } from '@/lib/actions/user.actions';
+import { fetchUser } from '@/lib/actions';
+
+import { converObjectIdToString } from '@/utils/base';
 
 async function Page() {
   const user = await currentUser();
@@ -16,7 +18,7 @@ async function Page() {
     <>
       <h1 className='head-text'>Create thread</h1>
 
-      <PostThread userId={userInfo?._id} />
+      <PostThread userId={converObjectIdToString(userInfo?._id)} />
     </>
   );
 }

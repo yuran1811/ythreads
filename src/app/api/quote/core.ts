@@ -1,6 +1,6 @@
 // API Reference: https://github.com/lukePeavey/quotable
 
-export type QuoteApiParam = {
+export interface QuoteApiParam {
   page: number;
   limit: number;
   maxLength: number;
@@ -10,9 +10,9 @@ export type QuoteApiParam = {
   authorId: string;
   sortBy: 'dateAdded' | 'dateModified' | 'author' | 'content';
   order: 'asc' | 'desc';
-};
+}
 
-export type QuoteType = {
+export interface QuoteType {
   _id: string;
   // The quotation text
   content: string;
@@ -24,7 +24,7 @@ export type QuoteType = {
   length: number;
   // An array of tag names for this quote
   tags: string[];
-};
+}
 
 export const getRandomQuote = async (params?: QuoteApiParam) => {
   try {
