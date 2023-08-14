@@ -140,19 +140,48 @@
   }
 }
 
+/* Clerk beautify the container */
+.cl-organizationSwitcherPopoverRootBox {
+  & > div {
+    @apply overflow-hidden !pb-0;
+  }
+
+  .cl-organizationSwitcherPopoverActions {
+    @apply !border-b-0;
+  }
+}
+.cl-userButtonPopoverRootBox {
+  & > div {
+    @apply overflow-hidden !pb-0;
+
+    & > div {
+      & > div {
+        @apply !pb-4;
+      }
+
+      & div:nth-child(2) {
+        @apply !pb-0;
+      }
+    }
+  }
+}
+
 .cl-card > div[class^='cl-internal'],
 .cl-organizationSwitcherPopoverFooter,
 .cl-userButtonPopoverFooter {
   @apply hidden;
 }
 
-/* Clerk Responsive fix */
-.cl-organizationSwitcherTrigger .cl-userPreview .cl-userPreviewTextContainer {
-  @apply max-sm:hidden;
+.cl-navbarButtons {
+  @apply gap-3;
 }
 
-.cl-organizationSwitcherTrigger .cl-organizationPreview .cl-organizationPreviewTextContainer {
-  @apply max-sm:hidden;
+/* Clerk Responsive fix */
+.cl-organizationSwitcherTrigger {
+  .cl-userPreview .cl-userPreviewTextContainer,
+  .cl-organizationPreview .cl-organizationPreviewTextContainer {
+    @apply max-sm:hidden;
+  }
 }
 
 /* Shadcn Component Styles */
@@ -166,24 +195,22 @@
   @apply focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important;
 }
 
-/* Account Profile  */
-.account-form_image-label {
-  @apply flex h-24 w-24 items-center justify-center rounded-full bg-dark-4 !important;
-}
-
-.account-form_image-input {
-  @apply cursor-pointer border-none bg-transparent outline-none file:text-blue !important;
-}
-
 .account-form_input {
   @apply border border-dark-4 bg-dark-3 text-light-1 !important;
+
+  &-label {
+    @apply flex h-24 w-24 items-center justify-center rounded-full bg-dark-4 !important;
+  }
+
+  &-input {
+    @apply cursor-pointer border-none bg-transparent outline-none file:text-blue !important;
+  }
 }
 
-/* Comment Form */
 .comment-form {
   @apply mt-10 flex items-center gap-4 border-y border-y-dark-4 py-5 max-xs:flex-col !important;
-}
 
-.comment-form_btn {
-  @apply rounded-3xl bg-primary-700 px-8 py-2 !text-small-regular text-light-1 max-xs:w-full !important;
+  &_btn {
+    @apply rounded-3xl bg-primary-700 px-8 py-2 !text-small-regular text-light-1 max-xs:w-full !important;
+  }
 }

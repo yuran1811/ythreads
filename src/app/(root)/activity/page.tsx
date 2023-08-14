@@ -29,14 +29,16 @@ async function Page() {
                       className='rounded-full object-cover'
                       src={_.author.image}
                       alt={_.author.name}
-                      width={20}
-                      height={20}
+                      width={42}
+                      height={42}
                     />
 
-                    <p className='body-text text-light-1 '>
-                      <span className='mr-1 text-primary-500'>{_.author.name}</span>
-                      reply to your thread <span className='line-clamp-1 max-w-xs'>({_.text})</span>
-                    </p>
+                    <div className='body-text ml-4 flex w-full max-w-2xl flex-col text-light-1'>
+                      <p>
+                        <span className='text-primary-500'>{_.author.name}</span> has replied to your thread
+                      </p>
+                      <p className='line-clamp-1 w-full'>{_.text}</p>
+                    </div>
                   </article>
                 </Link>
               </>

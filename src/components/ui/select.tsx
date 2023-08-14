@@ -1,7 +1,9 @@
 'use client';
 
+// @ts-ignore
+import { Check, ChevronDown } from 'lucide-react/dist/esm/icons';
+
 import * as SelectPrimitive from '@radix-ui/react-select';
-import { Check, ChevronDown } from 'lucide-react';
 import * as React from 'react';
 
 import { cn } from '@/lib/utils';

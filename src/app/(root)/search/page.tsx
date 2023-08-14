@@ -19,14 +19,14 @@ async function Page({ searchParams }: SearchParamsProps<{ page: string; q: strin
     userId: user.id,
     searchString: searchParams.q,
     pageNumber: searchParams?.page ? +searchParams.page : 1,
-    pageSize: 25,
+    pageSize: 15,
   });
 
   return (
     <section>
       <h1 className='head-text mb-10'>Search</h1>
 
-      {users.length > 0 && <Searchbar routeType='search' />}
+      {(users.length > 0 || searchParams.q.length > 0) && <Searchbar routeType='search' />}
 
       <div className='mt-10 flex flex-col gap-8'>
         {users.length > 0 ? (

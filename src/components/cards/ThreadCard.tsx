@@ -1,5 +1,10 @@
+// @ts-ignore
+// import { Calendar } from 'lucide-react/dist/esm/icons';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 import DeleteThread from '../forms/DeleteThread';
 
@@ -20,6 +25,7 @@ export interface ThreadCardProps {
     id: string;
     name: string;
     image: string;
+    bio: string;
   } | null;
   createdAt: string;
   comments: {
@@ -51,6 +57,7 @@ function ThreadCard({
                 src={author.image}
                 alt='user_community_image'
                 fill
+                sizes='100%'
                 className='cursor-pointer rounded-full'
               />
             </Link>
@@ -142,18 +149,32 @@ function ThreadCard({
 
       {!isComment && community && (
         <Link href={`/communities/${community.id}`} className='mt-5 flex items-center'>
-          <p className='text-subtle-medium text-gray-1'>
-            {formatDateString(createdAt)}
-            {community ? ` - ${community.name} Community` : ''}
-          </p>
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <div className='flex items-center text-subtle-medium text-gray-1'>
+                <span>{formatDateString(createdAt)}</span>
+                <span>{community ? ` - from ${community.name} community` : ''}</span>
+              </div>
+            </HoverCardTrigger>
 
-          <Image
-            src={community.image}
-            alt={community.name}
-            width={14}
-            height={14}
-            className='ml-1 rounded-full object-cover'
-          />
+            <HoverCardContent className='w-max'>
+              <div className='flex justify-between space-x-4'>
+                <Avatar>
+                  <AvatarImage src={community.image} />
+                  <AvatarFallback>{community.name.slice(0, 2)}</AvatarFallback>
+                </Avatar>
+
+                <div className='space-y-1'>
+                  <h4 className='text-sm font-semibold'>@{community.name}</h4>
+                  <p className='text-sm'>{community.bio}</p>
+                  {/* <div className='flex items-center pt-2'>
+                    <Calendar className='mr-2 h-4 w-4 text-light-3' />{' '}
+                    <span className='text-light-3'>Joined December 2021</span>
+                  </div> */}
+                </div>
+              </div>
+            </HoverCardContent>
+          </HoverCard>
         </Link>
       )}
     </article>

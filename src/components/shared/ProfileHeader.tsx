@@ -17,7 +17,13 @@ export function ProfileHeader({ accountId, authUserId, name, username, imgUrl, b
       <div className='flex items-center justify-between'>
         <div className='flex items-center gap-3'>
           <div className='relative h-20 w-20 object-cover'>
-            <Image src={imgUrl} alt='logo' fill className='rounded-full object-cover shadow-2xl' />
+            <Image
+              src={imgUrl}
+              alt='logo'
+              fill
+              sizes='100%'
+              className='rounded-full object-cover shadow-2xl'
+            />
           </div>
 
           <div className='flex-1'>

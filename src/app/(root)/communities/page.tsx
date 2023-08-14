@@ -18,14 +18,14 @@ export default async function Page({ searchParams }: SearchParamsProps<{ page: s
   const { communities, isNext } = await fetchCommunities({
     searchString: searchParams.q,
     pageNumber: searchParams?.page ? +searchParams.page : 1,
-    pageSize: 25,
+    pageSize: 15,
   });
 
   return (
     <section className=''>
       <h1 className='head-text mb-10'>Communities</h1>
 
-      {communities.length > 0 && (
+      {(communities.length > 0 || searchParams.q.length > 0) && (
         <div className='mt-5'>
           <Searchbar routeType='communities' />
         </div>

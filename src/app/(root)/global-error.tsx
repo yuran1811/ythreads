@@ -15,7 +15,7 @@ export default function Error({ error, reset }: ErrorPageProps) {
   return (
     <html lang='en'>
       <body className={inter.className}>
-        <section className='main-container'>
+        <section className='main-container gap-4'>
           <h2 className='head-text'>An error has occured!</h2>
           <button onClick={() => reset()}>Try again</button>
         </section>

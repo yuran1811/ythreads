@@ -15,7 +15,7 @@ export default async function Home({ searchParams }: SearchParamsProps<{ page: s
   const userInfo = await fetchUser(user.id);
   if (!userInfo?.onboarded) redirect('/onboarding');
 
-  const { posts, isNext } = await fetchPosts(searchParams?.page ? +searchParams.page : 1, 20);
+  const { posts, isNext } = await fetchPosts(searchParams?.page ? +searchParams.page : 1, 5);
 
   return (
     <section>

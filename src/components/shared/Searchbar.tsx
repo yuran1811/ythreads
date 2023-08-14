@@ -25,7 +25,7 @@ export function Searchbar({ routeType }: Props) {
     }, 300);
 
     return () => clearTimeout(delayDebounceFn);
-  }, [search, routeType]);
+  }, [router, routeType, search]);
 
   return (
     <div className='searchbar'>
@@ -34,7 +34,7 @@ export function Searchbar({ routeType }: Props) {
         id='text'
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        placeholder={`${routeType !== '/search' ? 'Search communities' : 'Search creators'}`}
+        placeholder={`${routeType !== 'search' ? 'Search communities' : 'Search creators'}`}
         className='no-focus searchbar_input'
       />
     </div>
