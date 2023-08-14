@@ -1,0 +1,2 @@
+- Add breadcumbs for deep comments of thread
+- the loading page process under header

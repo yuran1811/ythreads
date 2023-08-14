@@ -20,8 +20,8 @@ Official site: [https://ythreads.vercel.app/](https://ythreads.vercel.app/)
 ### Features
 
 - Create threads, thread comments
-- Profile settings
-- Auth with google
+- Profile and Organization settings
+- Authenticate with Google, Github, and Username
 
 ### Technologies
 
@@ -32,9 +32,10 @@ Official site: [https://ythreads.vercel.app/](https://ythreads.vercel.app/)
 - Libs:
   - SwiperJS (v10)
   - ...
-- MongoDB
+- Clerk, MongoDB
 
 ### Documentation
 
-- Read the [installation]()
+- [Todos](./md/todo.md)
+- Read the [installation](./md/next-gen-md.md)
 - More about the project can be found [here](./md/)
