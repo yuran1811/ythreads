@@ -1,8 +1,6 @@
 'use client';
 
-// @ts-ignore
-import { Calendar, Rocket, Settings, SmilePlus, User2 } from 'lucide-react/dist/esm/icons';
-
+import { Calendar, Rocket, Settings, SmilePlus, User2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 

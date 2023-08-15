@@ -1,8 +1,6 @@
 'use client';
 
-// @ts-ignore
-import { ChevronLeft, ChevronRight } from 'lucide-react/dist/esm/icons';
-
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import * as React from 'react';
 import { DayPicker } from 'react-day-picker';
 

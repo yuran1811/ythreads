@@ -1,6 +1,3 @@
-// @ts-ignore
-// import { Calendar } from 'lucide-react/dist/esm/icons';
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
@@ -167,10 +164,6 @@ function ThreadCard({
                 <div className='space-y-1'>
                   <h4 className='text-sm font-semibold'>@{community.name}</h4>
                   <p className='text-sm'>{community.bio}</p>
-                  {/* <div className='flex items-center pt-2'>
-                    <Calendar className='mr-2 h-4 w-4 text-light-3' />{' '}
-                    <span className='text-light-3'>Joined December 2021</span>
-                  </div> */}
                 </div>
               </div>
             </HoverCardContent>

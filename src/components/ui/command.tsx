@@ -1,10 +1,8 @@
 'use client';
 
-// @ts-ignore
-import { Search } from 'lucide-react/dist/esm/icons';
-
 import { DialogProps } from '@radix-ui/react-dialog';
 import { Command as CommandPrimitive } from 'cmdk';
+import { Search } from 'lucide-react';
 import * as React from 'react';
 
 import { Dialog, DialogContent } from '@/components/ui/dialog';
