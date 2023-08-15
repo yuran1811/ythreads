@@ -30,6 +30,12 @@ function DeleteThread({ threadId, currentUserId, authorId, parentId, isComment }
         await deleteThread(threadId, pathname);
 
         if (!parentId || !isComment) {
+          // not redirect to home if delete in profile page
+          if (pathname.match('profile')) {
+            return;
+          }
+
+          // delete root thread (not comment)
           router.push('/');
         }
       }}

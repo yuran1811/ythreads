@@ -7,7 +7,10 @@ import { CommandBar } from './CommandBar';
 export const TopBar = () => (
   <nav className='topbar'>
     <Link href='/' className='flex items-center gap-4'>
-      <Image src='/assets/logo.svg' alt='logo' width={28} height={28} />
+      <svg className='w-auto' aria-label='Vercel logomark' height='24' role='img' viewBox='0 0 74 64'>
+        <path d='M37.5896 0.25L74.5396 64.25H0.639648L37.5896 0.25Z' fill='white'></path>
+      </svg>
+
       <p className='text-heading3-bold text-light-1 max-xs:hidden'>Threads</p>
     </Link>
 
