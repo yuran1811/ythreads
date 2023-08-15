@@ -1,8 +1,7 @@
 'use client';
 
+import { usePathname, useRouter } from 'next/navigation';
 import { PropsWithChildren } from 'react';
-
-import { useStore } from '@/store';
 
 import {
   ContextMenu,
@@ -10,8 +9,6 @@ import {
   ContextMenuContent,
   ContextMenuItem,
   ContextMenuLabel,
-  ContextMenuRadioGroup,
-  ContextMenuRadioItem,
   ContextMenuSeparator,
   ContextMenuShortcut,
   ContextMenuSub,
@@ -21,52 +18,51 @@ import {
 } from '@/components/ui/context-menu';
 
 export const BodyContextMenu = ({ children }: PropsWithChildren) => {
-  const appTheme = useStore((s) => s.appTheme);
-  const setAppTheme = useStore((s) => s.setAppTheme);
+  const router = useRouter();
+  const pathname = usePathname();
 
   return (
     <ContextMenu>
       <ContextMenuTrigger className='h-screen w-screen'>{children}</ContextMenuTrigger>
 
       <ContextMenuContent className='w-64 bg-dark-4'>
-        <ContextMenuItem inset onClick={() => {}}>
+        <ContextMenuItem inset disabled={pathname === '/' || false} onClick={() => router.back()}>
           Back
-          <ContextMenuShortcut>⌘[</ContextMenuShortcut>
+          <ContextMenuShortcut>⌘←</ContextMenuShortcut>
         </ContextMenuItem>
-        <ContextMenuItem inset disabled>
+        <ContextMenuItem inset onClick={() => router.forward()}>
           Forward
-          <ContextMenuShortcut>⌘]</ContextMenuShortcut>
+          <ContextMenuShortcut>⌘→</ContextMenuShortcut>
         </ContextMenuItem>
-        <ContextMenuItem inset>
+        <ContextMenuItem inset onClick={() => router.refresh()}>
           Reload
           <ContextMenuShortcut>⌘R</ContextMenuShortcut>
         </ContextMenuItem>
 
         <ContextMenuSub>
           <ContextMenuSubTrigger inset>More Tools</ContextMenuSubTrigger>
+
           <ContextMenuSubContent className='w-48'>
-            <ContextMenuItem>
-              Save Page As...
-              <ContextMenuShortcut>⇧⌘S</ContextMenuShortcut>
-            </ContextMenuItem>
-            <ContextMenuItem>Create Shortcut...</ContextMenuItem>
-            <ContextMenuItem>Name Window...</ContextMenuItem>
-            <ContextMenuSeparator />
-            <ContextMenuItem>Developer Tools</ContextMenuItem>
+            <ContextMenuLabel>No more tools exist.</ContextMenuLabel>
           </ContextMenuSubContent>
         </ContextMenuSub>
 
         <ContextMenuSeparator />
 
-        <ContextMenuCheckboxItem>
-          Show Bookmarks Bar
-          <ContextMenuShortcut>⌘⇧B</ContextMenuShortcut>
-        </ContextMenuCheckboxItem>
-        <ContextMenuCheckboxItem checked>
-          Show Profile Icon
-          <ContextMenuShortcut>⌘⇧B</ContextMenuShortcut>
-        </ContextMenuCheckboxItem>
+        <ContextMenuCheckboxItem checked>Show Command Input</ContextMenuCheckboxItem>
 
+        <ContextMenuSeparator />
+
+        <ContextMenuItem inset onClick={() => router.push('/search')}>
+          Goto Search
+          <ContextMenuShortcut>⌘⇧S</ContextMenuShortcut>
+        </ContextMenuItem>
+        <ContextMenuItem inset onClick={() => router.push('/create-thread')}>
+          Create new Thread
+          <ContextMenuShortcut>⌘⇧N</ContextMenuShortcut>
+        </ContextMenuItem>
+
+        {/*
         <ContextMenuSeparator />
 
         <ContextMenuRadioGroup value={appTheme}>
@@ -80,7 +76,7 @@ export const BodyContextMenu = ({ children }: PropsWithChildren) => {
           <ContextMenuRadioItem value='light' onClick={() => setAppTheme('light')}>
             Light
           </ContextMenuRadioItem>
-        </ContextMenuRadioGroup>
+        </ContextMenuRadioGroup> */}
       </ContextMenuContent>
     </ContextMenu>
   );

@@ -3,6 +3,7 @@
 // @ts-ignore
 import { Calendar, Rocket, Settings, SmilePlus, User2 } from 'lucide-react/dist/esm/icons';
 
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import {
@@ -16,16 +17,54 @@ import {
   CommandShortcut,
 } from '@/components/ui/command';
 
+import { getKeyEventActions } from '@/utils/base';
+
 export const CommandBar = () => {
   const [open, setOpen] = useState(false);
 
+  const router = useRouter();
+
   useEffect(() => {
-    const down = (e: KeyboardEvent) => {
-      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault();
-        setOpen((open) => !open);
-      }
-    };
+    const down = getKeyEventActions([
+      {
+        key: 'k',
+        control: true,
+        action: () => {
+          setOpen((open) => !open);
+        },
+      },
+      {
+        key: 'arrowleft',
+        control: true,
+        callbacks: [router.back],
+      },
+      {
+        key: 'arrowright',
+        control: true,
+        callbacks: [router.forward],
+      },
+      {
+        key: 'r',
+        control: true,
+        callbacks: [router.refresh],
+      },
+      {
+        key: 'f',
+        control: true,
+        shift: true,
+        action() {
+          router.push('/search');
+        },
+      },
+      {
+        key: 'n',
+        control: true,
+        shift: true,
+        action() {
+          router.push('/create-thread');
+        },
+      },
+    ]);
 
     document.addEventListener('keydown', down);
 
@@ -36,7 +75,7 @@ export const CommandBar = () => {
     <>
       <p className='text-sm px-4 py-2'>
         Press{' '}
-        <kbd className='bg-muted pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border px-1.5 font-mono font-medium opacity-100'>
+        <kbd className='pointer-events-none inline-flex h-5 items-center gap-1 rounded border px-1.5 font-mono font-medium opacity-100'>
           <span className='mr-1'>⌘</span> K
         </kbd>
       </p>
@@ -51,7 +90,7 @@ export const CommandBar = () => {
               <a href='https://www.google.com/search?q=react'>Search with GG</a>
             </div>
           </CommandEmpty>
-          
+
           <CommandGroup heading='Suggestions'>
             <CommandItem>
               <Calendar className='mr-2 h-4 w-4' />
