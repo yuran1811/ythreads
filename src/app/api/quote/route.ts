@@ -1,12 +1,20 @@
 import { NextResponse } from 'next/server';
-import { QuoteType, getRandomQuote } from './core';
+import { QuoteQueryParams, QuoteResponse, getRandomQuote } from './core';
 
 export const GET = async (request: Request) => {
   try {
-    const randomQuote = await getRandomQuote();
-    const { author, content } = randomQuote as QuoteType;
+    const searchParams = new URL(request.url).searchParams;
 
-    return NextResponse.json({ author, content });
+    const params: Partial<QuoteQueryParams> = {};
+
+    searchParams.forEach((value, key) => {
+      params[key] = value;
+    });
+
+    const randomQuote = await getRandomQuote(params);
+    const { author, content, _id, length, ...others } = randomQuote as QuoteResponse;
+
+    return NextResponse.json({ author, content, ...others });
   } catch (error) {
     return NextResponse.json({ error });
   }

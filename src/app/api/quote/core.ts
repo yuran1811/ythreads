@@ -1,6 +1,17 @@
-// API Reference: https://github.com/lukePeavey/quotable
+// API References: https://github.com/lukePeavey/quotable or https://quotable.io
 
-export interface QuoteApiParam {
+import { getParamString } from '@/utils/base';
+
+export interface QuoteResponse {
+  _id: string;
+  content: string;
+  author: string; // To include quotes by multiple authors, provide a pipe-separated list of author names/slugs.
+  authorSlug: string;
+  length: number;
+  tags: string[]; // separated by a comma "," (AND) or a pipe "|" (OR)
+}
+
+export interface QuoteQueryParams extends Record<string, any> {
   page: number;
   limit: number;
   maxLength: number;
@@ -12,30 +23,11 @@ export interface QuoteApiParam {
   order: 'asc' | 'desc';
 }
 
-export interface QuoteType {
-  _id: string;
-  // The quotation text
-  content: string;
-  // The full name of the author
-  author: string;
-  // The `slug` of the quote author
-  authorSlug: string;
-  // The length of quote (number of characters)
-  length: number;
-  // An array of tag names for this quote
-  tags: string[];
-}
-
-export const getRandomQuote = async (params?: QuoteApiParam) => {
+export const getRandomQuote = async (params?: Partial<QuoteQueryParams>) => {
   try {
-    // const paramString = !params
-    //   ? ''
-    //   : Object.keys(params).reduce((prev, cur, idx) => {
-    //       prev += '&' + cur + '=' + params[cur];
+    const paramString = getParamString<Partial<QuoteQueryParams>>(params);
 
-    //       return prev;
-    //     }, '?');
-    const res = await fetch('https://api.quotable.io/random');
+    const res = await fetch(`https://api.quotable.io/random${paramString}`);
     const data = await res.json();
 
     return data;

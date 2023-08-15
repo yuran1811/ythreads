@@ -11,6 +11,8 @@ export const ourFileRouter = {
   media: f({ image: { maxFileSize: '4MB', maxFileCount: 1 } })
     // Set permissions and file types for this FileRoute
     .middleware(async (req) => {
+      console.log('req from uploadthing: ', req);
+
       // This code runs on your server before upload
       const user = await getUser();
 
@@ -23,7 +25,7 @@ export const ourFileRouter = {
     .onUploadComplete(async ({ metadata, file }) => {
       // This code RUNS ON YOUR SERVER after upload
       console.log('Upload complete for userId:', metadata.userId);
-      
+
       console.log('file url', file.url);
     }),
 } satisfies FileRouter;
