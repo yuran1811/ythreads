@@ -31,8 +31,11 @@ Official site: [https://ythreads.vercel.app/](https://ythreads.vercel.app/)
 - TailwindCSS
 - Libs:
   - SwiperJS (v10)
+  - lucide-react (for icons)
   - ...
 - Clerk, MongoDB
+
+- Testing with Vitest
 
 ### Documentation
 
