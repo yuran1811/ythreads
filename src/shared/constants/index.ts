@@ -1,3 +1,6 @@
+export const devUrl = 'http://localhost:3000';
+export const deployUrl = 'https://ythreads.vercel.app';
+
 export const sidebarLinks = [
   {
     imgURL: '/assets/home.svg',
