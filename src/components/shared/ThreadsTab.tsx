@@ -8,6 +8,7 @@ interface Result {
   name: string;
   image: string;
   id: string;
+  bio: string;
   threads: {
     _id: string;
     text: string;
@@ -21,6 +22,7 @@ interface Result {
       id: string;
       name: string;
       image: string;
+      bio: string;
     } | null;
     createdAt: string;
     children: {
@@ -68,7 +70,7 @@ export async function ThreadsTab({ currentUserId, accountId, accountType }: Prop
           }
           community={
             accountType === 'Community'
-              ? { name: result.name, id: result.id, image: result.image }
+              ? { name: result.name, id: result.id, image: result.image, bio: result.bio }
               : thread.community
           }
           createdAt={thread.createdAt}

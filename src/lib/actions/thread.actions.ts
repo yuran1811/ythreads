@@ -159,7 +159,7 @@ export async function fetchThreadById(threadId: string) {
       .populate({
         path: 'community',
         model: Community,
-        select: '_id id name image',
+        select: '_id id name image bio',
       })
       .populate({
         path: 'children',

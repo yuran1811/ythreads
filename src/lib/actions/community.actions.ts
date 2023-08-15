@@ -19,9 +19,7 @@ export async function createCommunity(
     // Find the user with the provided unique id
     const user = await User.findOne({ id: createdById });
 
-    if (!user) {
-      throw new Error('User not found'); // Handle the case if the user with the id is not found
-    }
+    if (!user) throw new Error('User not found');
 
     const newCommunity = new Community({
       id,
@@ -34,7 +32,6 @@ export async function createCommunity(
 
     const createdCommunity = await newCommunity.save();
 
-    // Update User model
     user.communities.push(createdCommunity._id);
     await user.save();
 
@@ -76,7 +73,7 @@ export async function fetchCommunityPosts(id: string) {
         {
           path: 'author',
           model: User,
-          select: 'name image id', // Select the "name" and "_id" fields from the "User" model
+          select: 'name image id',
         },
         {
           path: 'children',
@@ -84,7 +81,7 @@ export async function fetchCommunityPosts(id: string) {
           populate: {
             path: 'author',
             model: User,
-            select: 'image _id', // Select the "name" and "_id" fields from the "User" model
+            select: 'image _id',
           },
         },
       ],
