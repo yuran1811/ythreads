@@ -1,4 +1,5 @@
 import { currentUser } from '@clerk/nextjs';
+import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
 import { SearchParamsProps } from '@/shared/types';
@@ -7,6 +8,11 @@ import UserCard from '@/components/cards/UserCard';
 import { Pagination, Searchbar } from '@/components/shared';
 
 import { fetchUser, fetchUsers } from '@/lib/actions';
+
+export const metadata: Metadata = {
+  title: 'Threads | Search',
+  description: 'Searching users of Threads',
+};
 
 async function Page({ searchParams }: SearchParamsProps<{ page: string; q: string }>) {
   const user = await currentUser();

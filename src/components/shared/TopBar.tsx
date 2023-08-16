@@ -2,6 +2,7 @@ import { OrganizationSwitcher, SignedIn, SignOutButton, UserButton } from '@cler
 import { dark } from '@clerk/themes';
 import Image from 'next/image';
 import Link from 'next/link';
+
 import { CommandBar } from './CommandBar';
 
 export const TopBar = () => (

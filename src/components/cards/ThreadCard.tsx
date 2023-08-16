@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
 import DeleteThread from '../forms/DeleteThread';
 
-import { cn, formatDateString } from '@/lib/utils';
-import { converObjectIdToString } from '@/utils/base';
+import { cn } from '@/lib/utils';
+import { converObjectIdToString, formatDateString } from '@/utils';
 
 export interface ThreadCardProps {
   id: string;

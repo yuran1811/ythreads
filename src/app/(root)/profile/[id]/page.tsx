@@ -1,4 +1,5 @@
 import { currentUser } from '@clerk/nextjs';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
 
@@ -9,6 +10,11 @@ import { ProfileHeader, ThreadsTab } from '@/components/shared';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 import { fetchUser } from '@/lib/actions';
+
+export const metadata: Metadata = {
+  title: 'Threads | Profile',
+  description: 'Threads User Profile',
+};
 
 async function Page({ params }: ParamsProps<{ id: string }>) {
   const user = await currentUser();

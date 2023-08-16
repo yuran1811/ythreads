@@ -14,8 +14,9 @@ import { Textarea } from '@/components/ui/textarea';
 
 import { updateUser } from '@/lib/actions';
 import { useUploadThing } from '@/lib/uploadthing';
-import { isBase64Image } from '@/lib/utils';
 import { UserValidation } from '@/lib/validations/user';
+
+import { isBase64Image } from '@/utils';
 
 interface Props {
   user: {

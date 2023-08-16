@@ -18,8 +18,6 @@ interface Props {
 }
 
 function PostThread({ userId }: Props) {
-  if (!userId) return null;
-
   const router = useRouter();
   const pathname = usePathname();
 
@@ -71,4 +69,10 @@ function PostThread({ userId }: Props) {
   );
 }
 
-export default PostThread;
+const PostThreadWrapper = ({ userId }: Props) => {
+  if (!userId) return null;
+
+  return <PostThread userId={userId} />;
+};
+
+export default PostThreadWrapper;

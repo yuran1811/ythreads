@@ -1,1 +1,1 @@
-{"extends":["next/core-web-vitals","next","eslint:recommended","prettier"]}
+{"extends":["next/core-web-vitals","next","prettier"]}
