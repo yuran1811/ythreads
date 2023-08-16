@@ -1,8 +1,8 @@
 - Add breadcumbs for deep comments of thread
 - Add loading effects for suspense pages
-- the loading page process under header
-- show dialog when delete thread, comment, edit profile info
+- The loading page process under header
+- Show dialog when delete thread, comment, edit profile info (confirm box)
 
-- replies, tagged (like) show-up in profile page
+- Replies of threads user commented, tagged (liked threads) show-up in profile page
 
-- imple request func to org
+- Implementate request func to org

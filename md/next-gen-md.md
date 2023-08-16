@@ -2,7 +2,16 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, clone this project to your local directory:
+
+```bash
+git clone https://github.com/yuran1811/ythreads.git
+
+cd ythreads
+
+```
+
+Then run the development server:
 
 ```bash
 npm run dev
