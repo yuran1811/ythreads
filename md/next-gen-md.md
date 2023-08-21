@@ -9,6 +9,15 @@ git clone https://github.com/yuran1811/ythreads.git
 
 cd ythreads
 
+yarn
+
+```
+
+This app needs some env variables to run, so just copy the `.env.example` file and fill all the fields inside
+
+```bash
+cp .env.example .env.local
+
 ```
 
 Then run the development server:
