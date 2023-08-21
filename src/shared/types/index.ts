@@ -1,4 +1,5 @@
 export * from './community';
+export * from './socket';
 export * from './thread';
 export * from './user';
 

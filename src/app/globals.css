@@ -27,6 +27,10 @@
 }
 
 @layer components {
+  .page-transition {
+    @apply fixed inset-0 z-10;
+  }
+
   /* main */
   .main-container {
     @apply flex min-h-screen flex-1 flex-col items-center bg-dark-1 px-6 pb-10 pt-28 max-md:pb-32 sm:px-10;
@@ -140,7 +144,7 @@
   }
 }
 
-/* Clerk beautify the container */
+/* -= Clerk beautify the container =- */
 .cl-organizationSwitcherPopoverRootBox {
   & > div {
     @apply overflow-hidden !pb-0;
@@ -176,7 +180,7 @@
   @apply gap-3;
 }
 
-/* Clerk Responsive fix */
+/* -= Clerk Responsive fix =- */
 .cl-organizationSwitcherTrigger {
   .cl-userPreview .cl-userPreviewTextContainer,
   .cl-organizationPreview .cl-organizationPreviewTextContainer {
@@ -184,8 +188,7 @@
   }
 }
 
-/* Shadcn Component Styles */
-
+/* -= Shadcn Component Styles =- */
 /* Tab */
 .tab {
   @apply flex min-h-[50px] flex-1 items-center gap-3 bg-dark-2 text-light-2 data-[state=active]:bg-[#0e0e12] data-[state=active]:text-light-2 !important;

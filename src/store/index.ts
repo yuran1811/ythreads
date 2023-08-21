@@ -7,6 +7,12 @@ interface StoreType {
 
   progressBar: HTMLElement | null;
   setProgressBar: (progressBar: HTMLElement) => void;
+
+  chatUserInfo: {
+    name: string;
+    role: 'member' | 'admin';
+  };
+  setChatUserInfo: (chatUserInfo: { name: string; role: 'member' | 'admin' }) => void;
 }
 
 const GENERAL_STORE_NAME = 'General Store';
@@ -21,6 +27,12 @@ export const useStore = create<StoreType>()(
 
         progressBar: null,
         setProgressBar: (progressBar) => set({ progressBar }),
+
+        chatUserInfo: {
+          name: '',
+          role: 'member',
+        },
+        setChatUserInfo: (chatUserInfo) => set({ chatUserInfo }),
       }),
       {
         name: GENERAL_STORE_NAME,
