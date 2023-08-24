@@ -1,18 +1,22 @@
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 
+type AppThemeType = 'dark' | 'light';
+type ProgressBarType = HTMLElement;
+type ChatUserInfoType = {
+  name: string;
+  role: 'member' | 'admin';
+};
+
 interface StoreType {
-  appTheme: 'dark' | 'light';
-  setAppTheme: (appTheme: 'dark' | 'light') => void;
+  appTheme: AppThemeType;
+  setAppTheme: (appTheme: AppThemeType) => void;
 
-  progressBar: HTMLElement | null;
-  setProgressBar: (progressBar: HTMLElement) => void;
+  progressBar: ProgressBarType | null;
+  setProgressBar: (progressBar: ProgressBarType) => void;
 
-  chatUserInfo: {
-    name: string;
-    role: 'member' | 'admin';
-  };
-  setChatUserInfo: (chatUserInfo: { name: string; role: 'member' | 'admin' }) => void;
+  chatUserInfo: ChatUserInfoType;
+  setChatUserInfo: (chatUserInfo: ChatUserInfoType) => void;
 }
 
 const GENERAL_STORE_NAME = 'General Store';
@@ -29,7 +33,7 @@ export const useStore = create<StoreType>()(
         setProgressBar: (progressBar) => set({ progressBar }),
 
         chatUserInfo: {
-          name: '',
+          name: 'new_user',
           role: 'member',
         },
         setChatUserInfo: (chatUserInfo) => set({ chatUserInfo }),
