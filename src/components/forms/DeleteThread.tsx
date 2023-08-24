@@ -27,6 +27,8 @@ function DeleteThread({ threadId, currentUserId, authorId, parentId, isComment }
       height={18}
       className='cursor-pointer object-contain'
       onClick={async () => {
+        if (!pathname) return;
+
         await deleteThread(threadId, pathname);
 
         if (!parentId || !isComment) {
