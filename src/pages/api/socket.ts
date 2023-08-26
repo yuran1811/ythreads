@@ -21,7 +21,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       path: '/api/socket_io',
       addTrailingSlash: false,
       cors: {
-        origin: deployUrl,
+        // origin: deployUrl,
+        origin: '*',
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
       },
     },
   );
