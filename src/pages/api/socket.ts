@@ -17,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>(
     res.socket.server,
     {
-      path: '/api/socket_io',
+      path: '/api/socket',
       addTrailingSlash: false,
       cors: {
         // origin: deployUrl,

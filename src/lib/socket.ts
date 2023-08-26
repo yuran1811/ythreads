@@ -8,7 +8,7 @@ export const socketInitializer = async (callbacks: SocketInitCallbacks) => {
   try {
     await fetch('/api/socket');
 
-    const socket = io({ path: '/api/socket_io' });
+    const socket = io({ path: '/api/socket' });
 
     socket.on('connect', () => {
       console.log('isConnected', socket.connected);
