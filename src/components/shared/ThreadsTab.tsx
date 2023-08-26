@@ -1,6 +1,9 @@
+import dynamic from 'next/dynamic';
 import { redirect } from 'next/navigation';
 
-import ThreadCard from '../cards/ThreadCard';
+const ThreadCard = dynamic(() => import('@/components/cards/ThreadCard'), {
+  loading: () => <span>...</span>,
+});
 
 import { fetchCommunityPosts, fetchUserPosts } from '@/lib/actions';
 

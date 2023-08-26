@@ -3,18 +3,16 @@ import '@/app/globals.css';
 import { ClerkProvider } from '@clerk/nextjs';
 import { dark } from '@clerk/themes';
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import { Inter } from 'next/font/google';
 import { PropsWithChildren, Suspense } from 'react';
 
-import {
-  BodyContextMenu,
-  BottomBar,
-  LeftSideBar,
-  RightSideBar,
-  ThemeProvider,
-  TopBar,
-} from '@/components/shared';
+import { BottomBar, LeftSideBar, RightSideBar, ThemeProvider, TopBar } from '@/components/shared';
 import Loading from './loading';
+
+const BodyContextMenu = dynamic(() => import('@/components/shared/ContextMenus'), {
+  loading: () => <span>...</span>,
+});
 
 const inter = Inter({ subsets: ['latin'] });
 

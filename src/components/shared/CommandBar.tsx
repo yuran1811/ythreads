@@ -1,9 +1,11 @@
 'use client';
 
 import { Calendar, Rocket, Settings, SmilePlus, User2 } from 'lucide-react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
+import { Button } from '@/components/ui/button';
 import {
   CommandDialog,
   CommandEmpty,
@@ -17,7 +19,8 @@ import {
 
 import { getKeyEventActions } from '@/utils/base';
 
-export const CommandBar = () => {
+const CommandBar = () => {
+  const [searchString, setSearchString] = useState('');
   const [open, setOpen] = useState(false);
 
   const router = useRouter();
@@ -73,20 +76,25 @@ export const CommandBar = () => {
     <>
       <p className='text-sm px-4 py-2'>
         Press{' '}
-        <kbd className='pointer-events-none inline-flex h-5 items-center gap-1 rounded border px-1.5 font-mono font-medium opacity-100'>
-          <span className='mr-1'>⌘</span> K
+        <kbd className='pointer-events-none inline-flex h-6 items-center gap-1 rounded border px-1.5 font-mono font-medium opacity-100'>
+          <span className='mr-1'>⌘|Ctrl</span> K
         </kbd>
       </p>
 
       <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder='Type a command or search...' />
+        <CommandInput
+          placeholder='Type a command or search...'
+          onChangeCapture={(e) => setSearchString(e.currentTarget.value || '')}
+        />
 
         <CommandList>
           <CommandEmpty>
-            No results found.
-            <div className='mt-2'>
-              <a href='https://www.google.com/search?q=react'>Search with GG</a>
-            </div>
+            <p>No results found.</p>
+            <Link href={'https://www.google.com/search?q=' + searchString} target='_blank'>
+              <Button className='mt-2' variant='link'>
+                Search with GG
+              </Button>
+            </Link>
           </CommandEmpty>
 
           <CommandGroup heading='Suggestions'>
@@ -121,3 +129,5 @@ export const CommandBar = () => {
     </>
   );
 };
+
+export default CommandBar;

@@ -17,7 +17,7 @@ import {
   ContextMenuTrigger,
 } from '@/components/ui/context-menu';
 
-export const BodyContextMenu = ({ children }: PropsWithChildren) => {
+const BodyContextMenu = ({ children }: PropsWithChildren) => {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -81,3 +81,5 @@ export const BodyContextMenu = ({ children }: PropsWithChildren) => {
     </ContextMenu>
   );
 };
+
+export default BodyContextMenu;

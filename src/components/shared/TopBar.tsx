@@ -1,9 +1,12 @@
 import { OrganizationSwitcher, SignedIn, SignOutButton, UserButton } from '@clerk/nextjs';
 import { dark } from '@clerk/themes';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { CommandBar } from './CommandBar';
+const CommandBar = dynamic(() => import('./CommandBar'), {
+  loading: () => <span>...</span>,
+});
 
 export const TopBar = () => (
   <nav className='topbar'>

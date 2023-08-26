@@ -1,11 +1,17 @@
 import { currentUser } from '@clerk/nextjs';
 import { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import { redirect } from 'next/navigation';
 
 import { SearchParamsProps } from '@/shared/types';
 
 import UserCard from '@/components/cards/UserCard';
-import { Pagination, Searchbar } from '@/components/shared';
+const Searchbar = dynamic(() => import('@/components/shared/Searchbar'), {
+  loading: () => <span>...</span>,
+});
+const Pagination = dynamic(() => import('@/components/shared/Pagination'), {
+  loading: () => <span>...</span>,
+});
 
 import { fetchUser, fetchUsers } from '@/lib/actions';
 

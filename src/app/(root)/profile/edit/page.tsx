@@ -1,7 +1,10 @@
 import { currentUser } from '@clerk/nextjs';
+import dynamic from 'next/dynamic';
 import { redirect } from 'next/navigation';
 
-import AccountProfile from '@/components/forms/AccountProfile';
+const AccountProfile = dynamic(() => import('@/components/forms/AccountProfile'), {
+  loading: () => <span>...</span>,
+});
 
 import { fetchUser } from '@/lib/actions';
 

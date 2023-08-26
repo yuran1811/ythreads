@@ -10,7 +10,7 @@ interface Props {
   routeType: string;
 }
 
-export function Searchbar({ routeType }: Props) {
+function Searchbar({ routeType }: Props) {
   const router = useRouter();
 
   const [search, setSearch] = useState('');
@@ -40,3 +40,5 @@ export function Searchbar({ routeType }: Props) {
     </div>
   );
 }
+
+export default Searchbar;

@@ -1,10 +1,13 @@
 import { currentUser } from '@clerk/nextjs';
+import dynamic from 'next/dynamic';
 import { redirect } from 'next/navigation';
 
+import Comment from '@/components/forms/Comment';
 import { ParamsProps } from '@/shared/types';
 
-import ThreadCard from '@/components/cards/ThreadCard';
-import Comment from '@/components/forms/Comment';
+const ThreadCard = dynamic(() => import('@/components/cards/ThreadCard'), {
+  loading: () => <span>...</span>,
+});
 
 import { fetchThreadById, fetchUser } from '@/lib/actions';
 

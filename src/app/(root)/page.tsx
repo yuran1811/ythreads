@@ -1,10 +1,15 @@
 import { currentUser } from '@clerk/nextjs';
+import dynamic from 'next/dynamic';
 import { redirect } from 'next/navigation';
 
 import { SearchParamsProps } from '@/shared/types';
 
-import ThreadCard from '@/components/cards/ThreadCard';
-import { Pagination } from '@/components/shared/';
+const ThreadCard = dynamic(() => import('@/components/cards/ThreadCard'), {
+  loading: () => <span>...</span>,
+});
+const Pagination = dynamic(() => import('@/components/shared/Pagination'), {
+  loading: () => <span>...</span>,
+});
 
 import { fetchPosts, fetchUser } from '@/lib/actions';
 
