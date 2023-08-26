@@ -3,7 +3,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Server } from 'socket.io';
 
-import { deployUrl } from '@/shared/constants';
 import { ClientToServerEvents, InterServerEvents, ServerToClientEvents, SocketData } from '@/shared/types';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

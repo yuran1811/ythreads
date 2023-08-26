@@ -19,3 +19,5 @@ export const GET = async (request: Request) => {
     return NextResponse.json({ error });
   }
 };
+
+export const dynamic = 'force-dynamic';
