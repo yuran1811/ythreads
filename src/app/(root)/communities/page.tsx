@@ -16,7 +16,7 @@ export default async function Page({ searchParams }: SearchParamsProps<{ page: s
   if (!userInfo?.onboarded) redirect('/onboarding');
 
   const { communities, isNext } = await fetchCommunities({
-    searchString: searchParams.q,
+    searchString: searchParams?.q ?? '',
     pageNumber: searchParams?.page ? +searchParams.page : 1,
     pageSize: 15,
   });
@@ -25,7 +25,7 @@ export default async function Page({ searchParams }: SearchParamsProps<{ page: s
     <section className=''>
       <h1 className='head-text mb-10'>Communities</h1>
 
-      {(communities.length > 0 || searchParams.q.length > 0) && (
+      {(communities.length > 0 || searchParams?.q?.length > 0) && (
         <div className='mt-5'>
           <Searchbar routeType='communities' />
         </div>

@@ -17,13 +17,13 @@
 
 Official site: [https://ythreads.vercel.app/](https://ythreads.vercel.app/)
 
-### Features
+### Features // TODO: update this
 
 - Create threads, thread comments
 - Profile and Organization settings
 - Authenticate with Google, Github, and Username
 
-### Technologies
+### Technologies // TODO: update this
 
 - NextJS (v13)
 - Zustand
@@ -32,6 +32,7 @@ Official site: [https://ythreads.vercel.app/](https://ythreads.vercel.app/)
 - Libs:
   - SwiperJS (v10)
   - lucide-react (for icons)
+  - SocketIO, webrtc
   - ...
 - Clerk, MongoDB
 
