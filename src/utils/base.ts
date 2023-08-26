@@ -45,3 +45,29 @@ export const getKeyEventActions = (props: KeyEventProps[]) => {
     });
   };
 };
+
+export const generateVCardToDownload = ({
+  name,
+  phone,
+  email,
+}: Record<'name' | 'phone' | 'email', string>) => {
+  const vCardData = `BEGIN:VCARD
+    VERSION:4.0
+    FN:${name}
+    N:${name}
+    TEL;TYPE=work:${phone}
+    EMAIL;TYPE=work:${email}
+  END:VCARD`.replace(/ /gm, '');
+
+  const blob = new Blob([vCardData], { type: 'text/vcard' });
+  const url = URL.createObjectURL(blob);
+
+  const newLink = document.createElement('a');
+  Object.assign(newLink, {
+    download: name + '.vcf',
+    textContent: name,
+    href: url,
+  });
+
+  newLink.click();
+};

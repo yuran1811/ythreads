@@ -1,6 +1,7 @@
 'use client';
 
 import { m, useIsPresent } from 'framer-motion';
+import type { Metadata, ResolvingMetadata } from 'next';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
@@ -12,6 +13,21 @@ import { ParamsProps } from '@/shared/types';
 import { PageTransition } from '@/components/shared/PageTransition';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+
+import { generateVCardToDownload } from '@/utils/base';
+
+export async function generateMetadata(
+  { params }: ParamsProps<{ id: string }>,
+  parent?: ResolvingMetadata,
+): Promise<Metadata> {
+  if (!parent) return {};
+
+  const { id } = params;
+
+  const metadata = { title: 'Threads | Chat - ' + id, description: 'Chatting Room with id: ' + id };
+
+  return { ...metadata, openGraph: { ...metadata } };
+}
 
 export default function Page({ params }: ParamsProps<{ id: string }>) {
   const pathname = usePathname();
@@ -52,9 +68,17 @@ export default function Page({ params }: ParamsProps<{ id: string }>) {
           </Button>
         </div>
 
+        <Button onClick={() => generateVCardToDownload({ name: username, phone: '', email: '' })}>
+          Share your contact in .vcf file
+        </Button>
+
         <div className='flex h-full w-full flex-col items-center justify-start gap-4'>
-          <Link href={`${pathname}/call`}>Make a call</Link>
-          <Link href={`${pathname}/messages`}>Send messages</Link>
+          <Link href={`${pathname}/call`}>
+            <Button variant='outline'>Make a call</Button>
+          </Link>
+          <Link href={`${pathname}/messages`}>
+            <Button variant='outline'>Send messages</Button>
+          </Link>
         </div>
       </div>
 
