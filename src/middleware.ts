@@ -6,10 +6,9 @@ export default authMiddleware({
     '/api/webhook/clerk',
     '/api/quote',
     '/api/socket(.*)',
-    '/contact(.*)',
     '/room(.*)',
     '/animate(.*)',
-  ], // TODO: Change `contact` routes
+  ],
 
   afterAuth(auth, req, evt) {
     if (!auth.userId && !auth.isPublicRoute) {
