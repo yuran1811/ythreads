@@ -1,6 +1,5 @@
 'use client';
 
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
@@ -13,11 +12,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
 import { generateVCardToDownload } from '@/utils/base';
-
-export const metadata: Metadata = {
-  title: 'Threads | Chat',
-  description: 'Chatting Room with id',
-};
 
 export default function Page({ params }: ParamsProps<{ id: string }>) {
   const pathname = usePathname();
