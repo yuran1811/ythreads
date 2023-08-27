@@ -1,6 +1,6 @@
 'use client';
 
-import type { Metadata, ResolvingMetadata } from 'next';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
@@ -14,18 +14,10 @@ import { Input } from '@/components/ui/input';
 
 import { generateVCardToDownload } from '@/utils/base';
 
-export async function generateMetadata(
-  { params }: ParamsProps<{ id: string }>,
-  parent?: ResolvingMetadata,
-): Promise<Metadata> {
-  if (!parent) return {};
-
-  const { id } = params;
-
-  const metadata = { title: 'Threads | Chat - ' + id, description: 'Chatting Room with id: ' + id };
-
-  return { ...metadata, openGraph: { ...metadata } };
-}
+export const metadata: Metadata = {
+  title: 'Threads | Chat',
+  description: 'Chatting Room with id',
+};
 
 export default function Page({ params }: ParamsProps<{ id: string }>) {
   const pathname = usePathname();
