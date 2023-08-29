@@ -13,3 +13,7 @@
 /** @type {import('tailwindcss').Config} */
 /** @type {import('next').NextConfig} */
 ```
+
+## References
+
+- [Docker with Next](https://www.locofy.ai/blog/create-a-docker-image-of-your-nextjs-app)

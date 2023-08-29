@@ -1,0 +1,14 @@
+# Reference guide: https://docs.docker.com/compose/compose-file/
+# More examples: https://github.com/docker/awesome-compose
+
+services:
+  server:
+    build:
+      context: .
+    environment:
+      NODE_ENV: production
+    env_file:
+      - ./.env
+      - ./.env.local
+    ports:
+      - 3000:3000

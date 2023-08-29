@@ -1,5 +1,5 @@
 {
-  "name": "threads",
+  "name": "threads-clone",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,7 +7,10 @@
     "test": "vitest",
     "lint": "next lint",
     "start": "next start",
-    "build": "next build"
+    "build": "next build",
+    "docker:build": "docker build -t threads-clone .",
+    "docker:run": "docker run -p 3000:3000 threads-clone",
+    "docker:compose": "docker compose up --build"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.21.15",
