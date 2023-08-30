@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
 
 import { Button } from '@/components/ui/button';
 
@@ -9,9 +10,24 @@ export default function Page() {
 
   return (
     <div className='fixed inset-0 bg-slate-800'>
-      <h1 className='text-heading1-semibold'>Page 1</h1>
+      <section className='flex h-screen w-screen flex-col items-center justify-center'>
+        <motion.h1
+          className='mb-8 text-heading1-semibold'
+          initial={{ x: 100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.2 }}
+        >
+          Page 1
+        </motion.h1>
 
-      <Button onClick={() => router.back()}>Back</Button>
+        <motion.div
+          initial={{ x: 100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.6 }}
+        >
+          <Button onClick={() => router.back()}>Back</Button>
+        </motion.div>
+      </section>
     </div>
   );
 }

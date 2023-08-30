@@ -12,16 +12,14 @@ export default function Layout({ children }: PropsWithChildren) {
       mode='wait'
       initial={false}
       onExitComplete={() => {
-        console.log('exit from', pathname);
         window.scrollTo(0, 0);
       }}
     >
       <motion.div
         key={pathname}
-        className='main-containter'
-        initial={{ x: 300, opacity: 0 }}
+        className='bg-blue-900 fixed inset-0 flex items-center justify-center bg-gradient-to-br from-[#33ccff] to-[#ff99cc]'
+        initial={{ x: -270, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        exit={{ x: 300, opacity: 0 }}
         transition={{
           type: 'spring',
           stiffness: 260,

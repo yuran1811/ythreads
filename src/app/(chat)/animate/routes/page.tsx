@@ -3,15 +3,19 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { Button } from '@/components/ui/button';
+
 export default function Page() {
   const pathname = usePathname();
 
   return (
-    <div className='bg-blue-900 fixed inset-0'>
-      <section className='flex items-center justify-center gap-12'>
-        <Link href={`${pathname}/1`}>Page 1</Link>
-        <Link href={`${pathname}/2`}>Page 2</Link>
-      </section>
-    </div>
+    <section className='flex w-full max-w-sm flex-wrap items-center justify-center gap-12'>
+      <Link href={`${pathname}/1`}>
+        <Button>Page 1</Button>
+      </Link>
+      <Link href={`${pathname}/2`}>
+        <Button>Page 2</Button>
+      </Link>
+    </section>
   );
 }
