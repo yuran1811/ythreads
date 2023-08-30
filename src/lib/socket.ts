@@ -1,4 +1,4 @@
-import io from 'socket.io-client';
+import { io } from 'socket.io-client';
 
 export type SocketInitCallbacks = Partial<
   Record<'newIncomingMessage' | 'joinRoom', (...args: any[]) => void>
@@ -8,7 +8,11 @@ export const socketInitializer = async (callbacks: SocketInitCallbacks) => {
   try {
     await fetch('/api/socket');
 
-    const socket = io({ path: '/api/socket', addTrailingSlash: false });
+    const socket = io({
+      path: '/api/socket',
+      addTrailingSlash: false,
+      // withCredentials: true,
+    });
 
     socket.on('connect', () => {
       console.log('isConnected', socket.connected);

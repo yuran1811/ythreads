@@ -23,6 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // origin: deployUrl,
         origin: '*',
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        // credentials: true, // ? Cannot be used with origin '*'
       },
     },
   );
